@@ -1,5 +1,7 @@
 """EE 250L Lab 04 Starter Code
-Run vm_pub.py in a separate terminal on your VM."""
+Run vm_pub.py in a separate terminal on your VM.
+Team: Jacob Damasco & Kobe Kodachi
+"""
 
 import paho.mqtt.client as mqtt
 
@@ -14,10 +16,12 @@ def on_connect(client, userdata, flags, rc):
 
     print("Connected to server (i.e., broker) with result code "+str(rc))
     #replace user with your USC username in all subscriptions
-    client.subscribe("user/ipinfo")
+    client.subscribe("damasco/ipinfo")
+    client.subscribe("damasco/timedate")
     
     #Add the custom callbacks by indicating the topic and the name of the callback handle
-    client.message_callback_add("user/ipinfo", on_message_from_ipinfo)
+    client.message_callback_add("damasco/ipinfo", on_message_from_ipinfo)
+    client.message_callback_add("damasco/timedate", on_message_from_timedate)
 
 
 """This object (functions are objects!) serves as the default callback for 
@@ -31,7 +35,8 @@ def on_message(client, userdata, msg):
 def on_message_from_ipinfo(client, userdata, message):
    print("Custom callback  - IP Message: "+message.payload.decode())
 
-
+def on_message_from_timedate(client, userdata, message):
+    print("Custom callback - Date & Time: " + message.payload.decode())
 
 
 if __name__ == '__main__':
