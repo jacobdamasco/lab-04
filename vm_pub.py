@@ -51,6 +51,5 @@ if __name__ == '__main__':
         curr_time = datetime.now()
         #publish date and time in their own topics
         """your code here"""
-        print(curr_time)
         client.publish("damasco/timedate", f"{curr_time}")
         print("Publishing time")
