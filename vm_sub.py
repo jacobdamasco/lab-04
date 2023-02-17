@@ -18,9 +18,11 @@ def on_connect(client, userdata, flags, rc):
     #replace user with your USC username in all subscriptions
     client.subscribe("damasco/ipinfo")
     client.subscribe("damasco/timedate")
+    client.subscribe("damasco/defaulttimedate")
     
     #Add the custom callbacks by indicating the topic and the name of the callback handle
     client.message_callback_add("damasco/ipinfo", on_message_from_ipinfo)
+    client.message_callback_add("damasco/defaulttimemedate", on_message)
     client.message_callback_add("damasco/timedate", on_message_from_timedate)
 
 

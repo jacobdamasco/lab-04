@@ -52,4 +52,7 @@ if __name__ == '__main__':
         #publish date and time in their own topics
         """your code here"""
         client.publish("damasco/timedate", f"{curr_time}")
+        time.sleep(1)
+        client.publish("damasco/defaulttimedate", f"{curr_time}")
         print("Publishing time")
+        time.sleep(4)
